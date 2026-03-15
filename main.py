@@ -25,9 +25,9 @@ track.append(mido.MetaMessage('set_tempo', tempo=mido.bpm2tempo(TEMPO), time=0))
 events = []
 for note in keys:
     events.append((note.position, 'note_on', note.key, note.velocity))
-    events.append((note.position + note.length, 'note_on', note.key, 0))
+    events.append((note.position + note.length, 'note_off', note.key, 0))
 
-events.sort(key=lambda e: (e[0], e[3]))
+events.sort(key=lambda e: (e[0], e[1] == 'note_on'))
 
 prev_time = 0
 for abs_time, msg_type, key, velocity in events:
