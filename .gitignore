@@ -1,0 +1,21 @@
+# IDE files
+.idea/
+.vscode/
+*.iml
+.project
+.classpath
+.settings/
+
+# Build output
+target/
+out/
+build/
+
+# Misc
+*.log
+*.swp
+.DS_Store
+
+# Python-related (if needed)
+venv/
+__pycache__/
