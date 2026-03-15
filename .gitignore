@@ -16,6 +16,9 @@ build/
 *.swp
 .DS_Store
 
-# Python-related (if needed)
+# Python
 venv/
 __pycache__/
+
+# MIDI files
+*.mid
