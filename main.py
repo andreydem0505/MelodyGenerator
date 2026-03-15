@@ -1,4 +1,4 @@
-import pyflp
+import mido
 from chords import compose_chords_sequence
 from notes import get_chords_notes, Note
 
@@ -7,28 +7,31 @@ CHORDS_NUMBER = 8
 
 TEMPO = 200.0
 
-# base octave
 OCTAVE_NUMBER = 5
+
+TICKS_PER_BEAT = 96
 
 result_chords: list[int] = compose_chords_sequence(CHORDS_NUMBER)
 print(result_chords)
 keys: list[Note] = get_chords_notes(result_chords, OCTAVE_NUMBER)
 
 
-project = pyflp.parse("base.flp")
-project.tempo = TEMPO
-counter = 0
-for note in project.patterns.current.notes:
-    if counter < len(keys):
-        key = keys[counter]
-        note.key = key.key
-        note.length = key.length
-        note.position = key.position
-        note.velocity = key.velocity
-        counter += 1
-    else:
-        note.position = 0
-        note.velocity = 0
-        note.key = 0
+mid = mido.MidiFile(type=0, ticks_per_beat=TICKS_PER_BEAT)
+track = mido.MidiTrack()
+mid.tracks.append(track)
 
-pyflp.save(project, "result.flp")
+track.append(mido.MetaMessage('set_tempo', tempo=mido.bpm2tempo(TEMPO), time=0))
+
+events = []
+for note in keys:
+    events.append((note.position, 'note_on', note.key, note.velocity))
+    events.append((note.position + note.length, 'note_on', note.key, 0))
+
+events.sort(key=lambda e: (e[0], e[3]))
+
+prev_time = 0
+for abs_time, msg_type, key, velocity in events:
+    track.append(mido.Message(msg_type, note=key, velocity=velocity, time=abs_time - prev_time))
+    prev_time = abs_time
+
+mid.save("result.mid")
