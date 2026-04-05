@@ -2,7 +2,7 @@ import random
 from notes_math import add, sub
 
 def compose_chords_sequence(tonic: int, chords_number: int, minor_chance = 0.6, tonic_chance_init = 0.0) -> list[int]:
-    
+
     if not 1 <= tonic <= 12:
         raise ValueError("tonic must be in range [1, 12]")
     if chords_number < 1:
@@ -23,18 +23,9 @@ def compose_chords_sequence(tonic: int, chords_number: int, minor_chance = 0.6, 
             tonic_chance = tonic_chance_init
         elif (random.random() > minor_chance):
             result_sequence.append(random.choice(possible_chords[:2]))
-            tonic_chance += chance_step
+            tonic_chance += min(1.0 - tonic_chance, chance_step)
         else:
             result_sequence.append(random.choice(possible_chords[-3:]))
-            tonic_chance += chance_step
+            tonic_chance += min(1.0 - tonic_chance, chance_step)
 
     return result_sequence
-
-
-# previous verion
-
-# def compose_chords_sequence(chords_number: int) -> list[int]:
-#     tonic = randint(1, 12)
-#     print(tonic)
-#     possible_chords = [tonic, sub(tonic, 7), sub(tonic, 5), -sub(tonic, 3), -add(tonic, 2), -add(tonic, 4)]
-#     return [choice(possible_chords) for _ in range(chords_number)]
