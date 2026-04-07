@@ -3,7 +3,7 @@ from chords import compose_chords_sequence
 from notes import get_chords_notes, Note
 
 
-CHORDS_NUMBER = 8
+CHORDS_NUMBER = 16
 
 TEMPO = 200.0
 
@@ -11,9 +11,9 @@ OCTAVE_NUMBER = 5
 
 TICKS_PER_BEAT = 96
 
-result_chords: list[int] = compose_chords_sequence(1, CHORDS_NUMBER, minor_chance=0.6, tonic_chance_init=0.4, final_tonic=True)
+result_chords: list[int] = compose_chords_sequence(CHORDS_NUMBER, minor_chance=0.4, tonic_chance_init=0.2, final_tonic=False)
 print(result_chords)
-keys: list[Note] = get_chords_notes(result_chords, OCTAVE_NUMBER)
+keys: list[Note] = get_chords_notes(result_chords, OCTAVE_NUMBER, 3/4)
 
 
 mid = mido.MidiFile(type=0, ticks_per_beat=TICKS_PER_BEAT)
