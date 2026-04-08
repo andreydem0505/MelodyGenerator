@@ -1,3 +1,4 @@
+from fractions import Fraction
 import random
 
 
@@ -12,12 +13,13 @@ CELL_LENGTH = 384
 
 def get_chords_notes(chords: list[int],
                      octave: int,
-                     beat_length: float) -> list[Note]:
+                     meter: str) -> list[Note]:
+
     result = []
     position = 0
 
     for i in range(len(chords)):
-        cur_beat_length = beat_length
+        cur_beat_length = Fraction(meter)
 
         chord = chords[i]
         if chord < 0:
