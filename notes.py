@@ -29,7 +29,7 @@ def get_chords_notes(chords: list[int],
             keys = [chord, chord + 4, chord + 7]
 
         bass_keys = get_bass_keys(keys)
-        result.extend([Note(position, CELL_LENGTH * float(Fraction(meter)), 100, octave * 12 + key - 1) for key in bass_keys])
+        result.extend([Note(position, CELL_LENGTH * float(cur_beat_length), 100, octave * 12 + key - 1) for key in bass_keys])
 
         while cur_beat_length > 0:
             modified = keys_modified(keys)
