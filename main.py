@@ -3,8 +3,6 @@ from chords import compose_chords_sequence
 from notes import get_chords_notes, Note
 from to_midi import save
 
-TICKS_PER_BEAT = 96
-
 args = launch_options()
 
 result_chords: list[int] = compose_chords_sequence(args.chords, minor_chance=args.minor_chance, tonic_chance_init=args.tonic_chance, final_tonic=args.final_tonic)
