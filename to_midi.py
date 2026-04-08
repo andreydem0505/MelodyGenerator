@@ -17,9 +17,9 @@ def save(keys: list[Note], tempo: float, output: str):
     events.sort(key=lambda e: (e[0], e[1] == 'note_on'))
 
     prev_time = 0
-    for abs_time, msg_type, key, velocity in events:
-        track.append(mido.Message(msg_type, note=key, velocity=velocity, time=abs_time - prev_time))
-        prev_time = abs_time
+    for position, msg_type, key, velocity in events:
+        track.append(mido.Message(msg_type, note=key, velocity=velocity, time=position - prev_time))
+        prev_time = position
         
     if output[-4:] != '.mid':
         output += '.mid'

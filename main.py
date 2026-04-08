@@ -10,4 +10,3 @@ print(result_chords)
 keys: list[Note] = get_chords_notes(result_chords, args.octave, args.meter)
 
 save(keys, args.tempo, args.output)
-
