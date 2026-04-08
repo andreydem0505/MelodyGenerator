@@ -1,7 +1,7 @@
 import argparse
 
 
-def launch_options():
+def args():
     parser = argparse.ArgumentParser(description='Generate MIDIolody')
     parser.add_argument('--chords', '-ch', type=int, default=16, help='Number of chords (default: 16)')
     parser.add_argument('--tempo', '-t', type=float, default=200.0, help='Tempo in BPM (default: 200.0)')
