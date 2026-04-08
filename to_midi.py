@@ -20,5 +20,8 @@ def save(keys: list[Note], tempo: float, output: str):
     for abs_time, msg_type, key, velocity in events:
         track.append(mido.Message(msg_type, note=key, velocity=velocity, time=abs_time - prev_time))
         prev_time = abs_time
+        
+    if output[-4:] != '.mid':
+        output += '.mid'
 
     mid.save(output)
