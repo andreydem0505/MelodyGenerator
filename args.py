@@ -10,6 +10,6 @@ def launch_options():
     parser.add_argument('--tonic-chance', type=float, default=0.2, help='Initial chance of tonic chord (default: 0.2)')
     parser.add_argument('--final-tonic', action='store_true', help='Guarantees that the tonic is placed on the final beat (add if needed)')
     parser.add_argument('--meter', type=str, default='3/4', help='Time signature (default: 3/4)')
-    parser.add_argument('--output', '-o', type=str, default='result.mid', help='Output MIDI file (default: result.mid)')
+    parser.add_argument('--output', '-o', type=str, default='result', help='Output MIDI file (default: result)')
 
     return parser.parse_args()
