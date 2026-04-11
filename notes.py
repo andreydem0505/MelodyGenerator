@@ -35,9 +35,9 @@ def get_chords_notes(chords: list[int],
 
         while cur_beat_length > 0:
             modified = keys_modified(keys)
-            chord_length = choose_length_in_beat(cur_beat_length, 1, 4, 2, 0)
+            chord_length = choose_length_in_beat(cur_beat_length, 1, 5, 2, 0)
             cur_beat_length -= chord_length
-            void_length = choose_length_in_beat(cur_beat_length, 1, 4, 2, 7)
+            void_length = choose_length_in_beat(cur_beat_length, 1, 5, 2, 8)
             cur_beat_length -= void_length
 
             result.extend([Note(position, CELL_LENGTH * chord_length, 100, octave * 12 + key - 1) for key in modified])
@@ -46,7 +46,7 @@ def get_chords_notes(chords: list[int],
     return result
 
 def get_bass_keys(keys: list[int]):
-    return list(map(lambda x: x - 12, random.sample(keys, 2)))
+    return list(map(lambda x: x - 24, random.sample(keys, 2)))
 
 def keys_modified(keys: list[int]):
     return [key + 12 if random.random() < 0.3 else key for key in keys]
