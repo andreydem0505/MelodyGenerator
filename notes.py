@@ -35,9 +35,9 @@ def get_chords_notes(chords: list[int],
 
         while cur_beat_length > 0:
             modified = keys_modified(keys)
-            chord_length = choose_length_in_beat(cur_beat_length, 1, 5, 2, 0)
+            chord_length = choose_chord_length(cur_beat_length)
             cur_beat_length -= chord_length
-            void_length = choose_length_in_beat(cur_beat_length, 1, 5, 2, 8)
+            void_length = choose_void_length(cur_beat_length)
             cur_beat_length -= void_length
 
             result.extend([Note(position, CELL_LENGTH * chord_length, 100, octave * 12 + key - 1) for key in modified])
@@ -51,11 +51,21 @@ def get_bass_keys(keys: list[int]):
 def keys_modified(keys: list[int]):
     return [key + 12 if random.random() < 0.3 else key for key in keys]
 
-def choose_length_in_beat(max_length: float,
-                          one_eight_weight: int,
-                          one_forth_weight: int,
-                          one_second_weight: int,
-                          zero_weight: int) -> float:
+def choose_chord_length(max_length: float):
+    if max_length * 4 == int(max_length * 4):
+        return choose_length(max_length, 1, 9, 3, 0)
+    return choose_length(max_length, 20, 9, 3, 0)
+
+def choose_void_length(max_length: float):
+    if max_length * 4 == int(max_length * 4):
+        return choose_length(max_length, 1, 9, 3, 8)
+    return choose_length(max_length, 20, 9, 3, 32)
+
+def choose_length(max_length: float,
+                  one_eight_weight: int,
+                  one_forth_weight: int,
+                  one_second_weight: int,
+                  zero_weight: int) -> float:
     if max_length < 1/8:
         return 0.0
     if max_length < 1/4:
