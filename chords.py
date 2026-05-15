@@ -2,8 +2,8 @@ import random
 from notes_math import add, sub
 
 def compose_chords_sequence(chords_number: int,
-                            mode: str = 'major', #если не major и minor, то без настроения
-                            tonic: int = random.randint(1, 12),
+                            mode: int = 1, 
+                            tonic: int | None = None,
                             tonic_chance_init: float = 0.17,
                             final_tonic: bool = False) -> list[int]:
     # if mode not in ['minor', 'major']:
@@ -14,8 +14,10 @@ def compose_chords_sequence(chords_number: int,
         raise ValueError("chords_number must be >= 1")
     if not 0.0 <= tonic_chance_init <= 1.0:
         raise ValueError("tonic_chance_init must be in range [0.0, 1.0]")
+    if tonic == None:
+        tonic = random.randint(1, 12)
 
-    tonic_sign = int(abs(tonic)/tonic)
+    tonic_sign = 1 if tonic > 0 else -1
     tonic = abs(tonic)
 
     if tonic_sign > 0:
@@ -24,7 +26,7 @@ def compose_chords_sequence(chords_number: int,
     else:
         major_chords = [sub(tonic, 4), sub(tonic, 9), sub(tonic, 2)]
         minor_chords = [-sub(tonic, 7), -sub(tonic, 5)]
-    print('[ POSSIBLE_CHORDS ]: ', tonic_sign * tonic, major_chords, minor_chords)
+    # print('[ POSSIBLE_CHORDS ]: ', tonic_sign * tonic, major_chords, minor_chords)
 
     
     if tonic_chance_init < 1/len(minor_chords + major_chords): 
@@ -38,12 +40,12 @@ def compose_chords_sequence(chords_number: int,
             result_sequence.append(tonic_sign*tonic)
             tonic_chance = tonic_chance_init
         else:
-            if mode == 'minor':
+            if mode > 0:
                 if random.random() < 0.75:
                     next_chord = random.choice(minor_chords)
                 else:
                     next_chord = random.choice(major_chords)
-            elif mode == 'major':
+            elif mode < 0:
                 if random.random() < 0.25:
                     next_chord = random.choice(minor_chords)
                 else:
