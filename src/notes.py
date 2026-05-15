@@ -1,6 +1,8 @@
 from fractions import Fraction
 import random
 
+from typing import List
+
 
 class Note:
     def __init__(self, position, length, velocity, key):
@@ -11,10 +13,11 @@ class Note:
 
 CELL_LENGTH = 384
 
-def get_chords_notes(chords: list[int],
+def get_chords_notes(chords: List[int],
                      octave: int,
-                     meter: str) -> list[Note]:
-    
+                     meter: str) -> List[Note]:
+
+    print('Meter:', meter)
     beat_length = float(Fraction(meter))
 
     result = []
@@ -45,10 +48,10 @@ def get_chords_notes(chords: list[int],
 
     return result
 
-def get_bass_keys(keys: list[int]):
+def get_bass_keys(keys: List[int]):
     return list(map(lambda x: x - 24, random.sample(keys, 2)))
 
-def keys_modified(keys: list[int]):
+def keys_modified(keys: List[int]):
     return [key + 12 if random.random() < 0.3 else key for key in keys]
 
 def choose_chord_length(max_length: float):

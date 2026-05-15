@@ -1,8 +1,10 @@
 import mido
+from typing import List
+
 from notes import Note
 
 
-def save(keys: list[Note], tempo: float, output: str):
+def save(keys: List[Note], tempo: float, output: str):
     mid = mido.MidiFile(type=0, ticks_per_beat=96)
     track = mido.MidiTrack()
     mid.tracks.append(track)

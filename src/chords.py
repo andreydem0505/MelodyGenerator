@@ -1,11 +1,14 @@
 import random
+
+from typing import List
+
 from notes_math import add, sub
 
 def compose_chords_sequence(chords_number: int,
                             mode: str = 'minor',
                             tonic: int = random.randint(1, 12),
                             tonic_chance_init: float = 0.17,
-                            final_tonic: bool = False) -> list[int]:
+                            final_tonic: bool = False) -> List[int]:
     if mode not in ['minor', 'major']:
         raise ValueError("mode must be 'minor' or 'major'")
     if not 1 <= tonic <= 12:
@@ -39,4 +42,5 @@ def compose_chords_sequence(chords_number: int,
             result_sequence.append(next_chord)
             tonic_chance += min(1.0 - tonic_chance, chance_step)
     if final_tonic: result_sequence.append(tonic)
+    print(f'tonic: {tonic}, mode: {mode}')
     return result_sequence
