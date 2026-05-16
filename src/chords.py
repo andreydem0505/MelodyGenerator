@@ -8,14 +8,14 @@ def compose_chords_sequence(chords_number: int,
                             final_tonic: bool = False) -> list[int]:
     # if mode not in ['minor', 'major']:
     #     raise ValueError("mode must be 'minor' or 'major'")
+    if tonic is None:
+        tonic = random.randint(1, 12)
     if not 1 <= abs(tonic) <= 12:
         raise ValueError("tonic must be in range ±[1, 12]")
     if chords_number < 1:
         raise ValueError("chords_number must be >= 1")
     if not 0.0 <= tonic_chance_init <= 1.0:
         raise ValueError("tonic_chance_init must be in range [0.0, 1.0]")
-    if tonic == None:
-        tonic = random.randint(1, 12)
 
     tonic_sign = 1 if tonic > 0 else -1
     tonic = abs(tonic)
