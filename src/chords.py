@@ -6,7 +6,7 @@ def compose_chords_sequence(chords_number: int,
                             mode: int = 1, 
                             tonic: int | None = None,
                             tonic_chance_init: float = 0.17,
-                            final_tonic: bool = False) -> list[int]:
+                            final_tonic: bool = False) -> List[int]:
     if tonic is None:
         tonic = random.randint(1, 12)
     if not 1 <= abs(tonic) <= 12:
@@ -52,5 +52,5 @@ def compose_chords_sequence(chords_number: int,
             result_sequence.append(next_chord)
             tonic_chance += min(1.0 - tonic_chance, chance_step)
     if final_tonic: result_sequence.append(tonic_sign*tonic)
-    print('Popssible chords: ', tonic_sign * tonic, major_chords, minor_chords, '\nMode: ', 'major' if mode > 0 else 'minor' if mode < 0 else 'mixed')
+    print('Possible chords: ', tonic_sign * tonic, major_chords, minor_chords, '\nMode: ', 'major' if mode > 0 else 'minor' if mode < 0 else 'mixed')
     return result_sequence
