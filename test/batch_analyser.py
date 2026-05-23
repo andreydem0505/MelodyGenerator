@@ -5,9 +5,6 @@ from pathlib import Path
 from analyser import detect_key
 
 def analyse_batch(input_dir: str, output_csv: str) -> None:
-    """
-    Анализирует все WAV файлы в папке и сохраняет результаты в CSV.
-    """
     results = []
     
     for wav_file in sorted(Path(input_dir).glob('*.wav')):
@@ -25,7 +22,7 @@ def analyse_batch(input_dir: str, output_csv: str) -> None:
     
     with open(output_csv, 'w', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=['filename', 'key', 'mode', 'time_signature'])
-        writer.writeheader()
+        writer.writeheader() #возможно, стоит убрать
         writer.writerows(results)
     
     print(f"\nSaved {len(results)} results to {output_csv}")
