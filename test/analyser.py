@@ -152,4 +152,4 @@ def detect_key(audio_path):
 
 if __name__ == '__main__':
 
-    print(detect_key('untitled.wav'))
+    print(detect_key('test/untitled.wav'))
