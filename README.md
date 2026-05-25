@@ -2,6 +2,8 @@
 
 #### First launch
 
+Please use `python 3.10`
+
 ```sh
 ~/.pyenv/versions/3.10.20/bin/python -m venv venv
 source venv/bin/activate
