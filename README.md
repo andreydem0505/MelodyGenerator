@@ -2,7 +2,7 @@
 
 #### First launch
 
-Please use `python 3.10`
+Please use `python 3.10` (if doesn't work try python 3.8)
 
 ```sh
 ~/.pyenv/versions/3.10.20/bin/python -m venv venv
