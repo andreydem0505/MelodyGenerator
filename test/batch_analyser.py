@@ -4,10 +4,14 @@ import csv
 from pathlib import Path
 from analyser import detect_key
 
-def analyse_batch(input_dir: str, output_csv: str) -> None:
+def analyse_batch(input_dir: str, output_csv: str, filenames: list[str] | None = None) -> None:
     results = []
+    allowed_filenames = set(filenames) if filenames is not None else None
     
     for wav_file in sorted(Path(input_dir).glob('*.wav')):
+        if allowed_filenames is not None and wav_file.name not in allowed_filenames:
+            continue
+
         try:
             key, mode, time_sig = detect_key(str(wav_file))
             results.append({
