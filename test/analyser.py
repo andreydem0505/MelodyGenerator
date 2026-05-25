@@ -1,7 +1,11 @@
 import numpy as np
 import librosa
+import collections
+import collections.abc
 
 from collections import Counter
+
+collections.MutableSequence = collections.abc.MutableSequence
 
 from madmom.features.downbeats import (
     RNNDownBeatProcessor,
