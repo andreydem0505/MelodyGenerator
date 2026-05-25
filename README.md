@@ -15,7 +15,7 @@ pip install -r requirements.txt
 
 To see list of available commands type: 
 ```sh
-src/main.py -h
+venv/bin/python src/main.py -h
 ```
 
 ### Testing
