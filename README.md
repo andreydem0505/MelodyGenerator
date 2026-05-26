@@ -20,7 +20,7 @@ venv/bin/python src/main.py -h
 
 ### Testing
 
-#### To run unit test test
+#### To run unit test
 
 ```sh
 pytest
