@@ -36,7 +36,6 @@ venv/bin/python test/generate_analyse_compare.py
 2. Then script will analyse them;
 3. And compare input parameters with an actual generated files.
 
-
 ---
 
 <img width="1437" height="869" alt="result" src="https://github.com/user-attachments/assets/ea362af9-b43b-4884-91be-41b8fdcb6ce7" />
