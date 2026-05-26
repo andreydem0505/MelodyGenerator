@@ -26,15 +26,6 @@ venv/bin/python src/main.py -h
 pytest
 ```
 
-### GitHub Actions
-
-Unit-тесты запускаются автоматически в GitHub Actions при `push` в ветку `master`.
-
-Чтобы запустить workflow:
-1. Закоммитьте изменения в локальной ветке;
-2. Выполните `git push origin master`;
-3. Проверьте статус запуска в GitHub: `Actions` → `Unit tests`.
-
 #### To run integration test
 
 ```sh
